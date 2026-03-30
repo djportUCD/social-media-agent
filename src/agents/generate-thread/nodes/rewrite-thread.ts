@@ -1,12 +1,12 @@
 import { z } from "zod";
 import { GenerateThreadState } from "../state.js";
-import { ChatAnthropic } from "@langchain/anthropic";
 import {
   getThreadReflections,
   THREAD_REFLECTIONS_PROMPT,
   THREAD_RULESET_KEY,
 } from "../../../utils/reflections.js";
 import { LangGraphRunnableConfig } from "@langchain/langgraph";
+import { createSocialStructuredOutputModel } from "../../../plugins/model-factory.js";
 
 const REWRITE_THREAD_PROMPT = `<context>
 You're a highly regarded marketing employee, working on crafting thoughtful and engaging content for your LinkedIn and Twitter pages.
@@ -61,10 +61,11 @@ export async function rewriteThread(
     );
   }
 
-  const rewriteThreadModel = new ChatAnthropic({
-    model: "claude-sonnet-4-5",
+  const rewriteThreadModel = createSocialStructuredOutputModel({
+    config,
+    purpose: "rewrite-post",
     temperature: 0,
-  }).withStructuredOutput(schema, {
+    schema,
     name: "rewriteThreadPosts",
   });
 

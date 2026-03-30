@@ -1,4 +1,3 @@
-import { ChatAnthropic } from "@langchain/anthropic";
 import {
   formatAllPostsForPrompt,
   formatBodyPostsForPrompt,
@@ -7,6 +6,7 @@ import {
   parseTweetGeneration,
 } from "../utils.js";
 import { GenerateThreadState } from "../state.js";
+import { createSocialTextModel } from "../../../plugins/model-factory.js";
 
 const STYLE_RULES = `- Ensure it's engaging and interesting.
 - Keep it under 280 characters to fit in a single Tweet.
@@ -145,8 +145,8 @@ Once you've completed these steps, provide your tweet inside <tweet> tags. Do no
 export async function generateThreadPosts(
   state: GenerateThreadState,
 ): Promise<Partial<GenerateThreadState>> {
-  const model = new ChatAnthropic({
-    model: "claude-sonnet-4-5",
+  const model = createSocialTextModel({
+    purpose: "generate-post",
     temperature: 0, // TODO: Eval different temperatures
   });
 

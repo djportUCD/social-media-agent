@@ -20,7 +20,7 @@ Here are the key details from all of the reports:
 </report-key-details>`;
 
 function formatReportKeyDetails(
-  reports: Array<{ report: string; keyDetails: string }>,
+  reports: Array<{ report: string; keyDetails: string; sourceContext?: string }>,
 ) {
   return reports
     .map(
@@ -51,12 +51,20 @@ const responseSchema = z
   );
 
 function processGroupedReports(
-  reports: Array<{ report: string; keyDetails: string }>,
+  reports: Array<{ report: string; keyDetails: string; sourceContext?: string }>,
   similarReports: { indices: number[] }[],
-): Array<{ reports: string[]; keyDetails: string[] }> {
+): Array<{
+  reports: string[];
+  keyDetails: string[];
+  sourceContext: Array<string | undefined>;
+}> {
   // Create a Set to keep track of processed indices
   const processedIndices = new Set<number>();
-  const result: Array<{ reports: string[]; keyDetails: string[] }> = [];
+  const result: Array<{
+    reports: string[];
+    keyDetails: string[];
+    sourceContext: Array<string | undefined>;
+  }> = [];
 
   // Process grouped reports first
   for (const group of similarReports) {
@@ -70,6 +78,7 @@ function processGroupedReports(
         return reports[index].report;
       }),
       keyDetails: group.indices.map((index) => reports[index].keyDetails),
+      sourceContext: group.indices.map((index) => reports[index].sourceContext),
     };
 
     result.push(reportGroup);
@@ -81,6 +90,7 @@ function processGroupedReports(
       result.push({
         reports: [reports[i].report],
         keyDetails: [reports[i].keyDetails],
+        sourceContext: [reports[i].sourceContext],
       });
     }
   }

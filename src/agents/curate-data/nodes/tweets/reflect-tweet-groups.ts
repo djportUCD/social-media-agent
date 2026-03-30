@@ -1,7 +1,7 @@
-import { ChatOpenAI } from "@langchain/openai";
 import { CurateDataState } from "../../state.js";
 import { GROUP_BY_CONTENT_CRITERIA } from "./prompts.js";
 import { TweetV2WithURLs, TweetsGroupedByContent } from "../../types.js";
+import { createSocialTextModel } from "../../../../plugins/model-factory.js";
 
 const REFLECT_ON_GROUPS_PROMPT = `You're an advanced AI software engineer who's working on curating education content about AI. Your colleague has taken a large dataset of tweets about AI, LLMs, and related software, and grouped them into a set of unique topics.
 
@@ -95,7 +95,10 @@ ${formatTweetsInGroup(group.tweets)}
 export async function reflectOnTweetGroups(
   state: CurateDataState,
 ): Promise<Partial<CurateDataState>> {
-  const model = new ChatOpenAI({ model: "o1", streaming: false });
+  const model = createSocialTextModel({
+    purpose: "generate-report",
+    temperature: 0,
+  });
 
   const formattedUserPrompt = `Hi! Here are all of the groups I put together:
 ${formatUserPrompt(state.tweetsGroupedByContent)}

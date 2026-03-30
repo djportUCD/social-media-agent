@@ -1,8 +1,9 @@
 import { z } from "zod";
-import { ChatAnthropic } from "@langchain/anthropic";
+import { LangGraphRunnableConfig } from "@langchain/langgraph";
 import { toZonedTime } from "date-fns-tz";
 import { DateType } from "../../types.js";
 import { timezoneToUtc } from "../../../utils/date.js";
+import { createSocialStructuredOutputModel } from "../../../plugins/model-factory.js";
 
 const SCHEDULE_POST_DATE_PROMPT = `You're an intelligent AI assistant tasked with extracting the date to schedule a social media post from the user's message.
 
@@ -39,14 +40,16 @@ const scheduleDateSchema = z.object({
 
 export async function updateScheduledDate(
   state: Record<string, any>,
+  config?: LangGraphRunnableConfig,
 ): Promise<Record<string, any>> {
   if (!state.userResponse) {
     throw new Error("No user response found");
   }
-  const model = new ChatAnthropic({
-    model: "claude-sonnet-4-5",
+  const model = createSocialStructuredOutputModel({
+    config,
+    purpose: "schedule-date",
     temperature: 0.5,
-  }).withStructuredOutput(scheduleDateSchema, {
+    schema: scheduleDateSchema,
     name: "scheduleDate",
   });
   const pstDate = toZonedTime(new Date(), "America/Los_Angeles");

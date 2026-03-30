@@ -1,8 +1,8 @@
-import { ChatAnthropic } from "@langchain/anthropic";
 import { CurateDataState } from "../state.js";
 import { z } from "zod";
 import { chunkArray } from "../../utils.js";
 import { TweetV2 } from "twitter-api-v2";
+import { createSocialStructuredOutputModel } from "../../../plugins/model-factory.js";
 
 const EXAMPLES = `<example index="0">
     <example-tweet>
@@ -143,10 +143,12 @@ function formatTweets(tweets: TweetV2[]): string {
 export async function validateBulkTweets(
   state: CurateDataState,
 ): Promise<Partial<CurateDataState>> {
-  const model = new ChatAnthropic({
-    model: "claude-sonnet-4-5",
+  const model = createSocialStructuredOutputModel({
+    purpose: "verify-content",
     temperature: 0,
-  }).withStructuredOutput(answerSchema, { name: "answer" });
+    schema: answerSchema,
+    name: "answer",
+  });
 
   // Chunk the tweets into groups of 25
   const chunkedTweets = chunkArray(state.rawTweets, 25);

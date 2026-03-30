@@ -1,0 +1,26 @@
+{
+  "id": "linkedin",
+  "displayName": "LinkedIn",
+  "aliases": [
+    "company-page",
+    "professional-feed"
+  ],
+  "hardCharacterLimit": 3000,
+  "preferredLength": "Short to medium posts usually work best: enough context to establish relevance, but not enough to feel like a blog post.",
+  "tone": "Credible, useful, and professional without sounding corporate or inflated.",
+  "structureTips": [
+    "Open with a useful claim, result, or announcement",
+    "Add one or two sentences of proof or business context",
+    "Close with a direct CTA"
+  ],
+  "trendSignals": [
+    "Concrete outcomes and implementation lessons tend to outperform vague thought leadership",
+    "A little more context is usually tolerated if it earns the next line"
+  ],
+  "avoid": [
+    "Thread-style fragmentation",
+    "Overly slang-heavy hooks",
+    "Overuse of emojis"
+  ],
+  "trendResearchUrls": []
+}

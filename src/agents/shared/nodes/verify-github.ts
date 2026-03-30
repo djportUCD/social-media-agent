@@ -51,18 +51,16 @@ const REPO_DEPENDENCY_PROMPT = `Here are the dependencies of the repository. You
 {dependencyFiles}
 </repository-dependency-files>`;
 
-const VERIFY_LANGCHAIN_RELEVANT_CONTENT_PROMPT = `You are a highly regarded marketing employee at LangChain.
-You're given a {file_type} from a GitHub repository and need to verify the repository implements your company's products.
-You're doing this to ensure the content is relevant to LangChain, and it can be used as marketing material to promote LangChain.
-
-${getPrompts().businessContext}
+const VERIFY_REPOSITORY_RELEVANT_CONTENT_PROMPT = `You are a highly regarded marketing employee.
+You're given a {file_type} from a GitHub repository and need to verify whether the repository is relevant to the current business context.
+You're doing this to ensure the content is relevant to the current business and can be used as marketing material on its social channels.
 
 ${getPrompts().contentValidationPrompt}
 
 {repoDependenciesPrompt}
 
-Given this context, examine the  {file_type} closely, and determine if the repository implements your company's products.
-You should provide reasoning as to why or why not the repository implements your company's products, then a simple true or false for whether or not it implements some.`;
+Given this context, examine the {file_type} closely, and determine if the repository is relevant to the current business context.
+You should provide reasoning as to why or why not the repository is relevant, then a simple true or false for whether or not it is relevant.`;
 
 const getDependencies = async (
   githubUrl: string,
@@ -141,7 +139,10 @@ async function verifyGitHubContentIsRelevant({
   contents,
   fileType,
   dependencyFiles,
-}: VerifyGitHubContentParams): Promise<boolean> {
+  config,
+}: VerifyGitHubContentParams & {
+  config?: LangGraphRunnableConfig;
+}): Promise<boolean> {
   let dependenciesPrompt = "";
   if (dependencyFiles) {
     dependencyFiles.forEach((f) => {
@@ -155,7 +156,7 @@ async function verifyGitHubContentIsRelevant({
     );
   }
 
-  const systemPrompt = VERIFY_LANGCHAIN_RELEVANT_CONTENT_PROMPT.replaceAll(
+  const systemPrompt = VERIFY_REPOSITORY_RELEVANT_CONTENT_PROMPT.replaceAll(
     "{file_type}",
     fileType,
   ).replaceAll("{repoDependenciesPrompt}", dependenciesPrompt);
@@ -163,6 +164,7 @@ async function verifyGitHubContentIsRelevant({
   return verifyContentIsRelevant(contents, {
     systemPrompt,
     schema: RELEVANCY_SCHEMA,
+    config,
   });
 }
 
@@ -213,6 +215,7 @@ export async function verifyGitHubContent(
       contents: contentsAndType.contents,
       fileType: contentsAndType.fileType,
       dependencyFiles,
+      config,
     })
   ) {
     return returnValue;

@@ -1,10 +1,10 @@
-import { ChatAnthropic } from "@langchain/anthropic";
 import { z } from "zod";
 import { formatReportForPrompt } from "../../repurposer/utils.js";
 import {
   RepurposerPostInterruptState,
   RepurposerPostInterruptUpdate,
 } from "../types.js";
+import { createSocialTextModel } from "../../../plugins/model-factory.js";
 
 const REWRITE_POST_PROMPT = `<context>
 You're a highly regarded marketing employee, working on crafting thoughtful and engaging content for your LinkedIn and Twitter pages.
@@ -48,10 +48,10 @@ export async function rewritePost(
     throw new Error("Can not rewrite posts without user response");
   }
 
-  const model = new ChatAnthropic({
-    model: "claude-sonnet-4-5",
+  const model = (createSocialTextModel({
+    purpose: "rewrite-post",
     temperature: 0,
-  }).bindTools(
+  }) as any).bindTools(
     [
       {
         name: "update_post",

@@ -1,6 +1,7 @@
 import { CurateDataConfigurable, CurateDataState } from "../state.js";
 import { LangGraphRunnableConfig } from "@langchain/langgraph";
 import { aiNewsBlogLoader } from "../loaders/ai-news-blog.js";
+import { businessStoriesLoader } from "../loaders/business-stories.js";
 import {
   twitterLoader,
   twitterLoaderWithLangChain,
@@ -31,6 +32,7 @@ export async function ingestData(
   let trendingRepos: string[] = [];
   let latentSpacePosts: string[] = [];
   let aiNewsPosts: string[] = [];
+  let businessStoryLinks: string[] = [];
   let redditPosts: SimpleRedditPostWithComments[] = [];
 
   if (useLangChainPrompts()) {
@@ -97,11 +99,14 @@ export async function ingestData(
   if (sources.includes("ai_news")) {
     aiNewsPosts = await aiNewsBlogLoader();
   }
+  if (sources.includes("business_stories")) {
+    businessStoryLinks = await businessStoriesLoader(config);
+  }
 
   return {
     rawTweets: tweets,
     rawTrendingRepos: trendingRepos,
-    generalUrls: latentSpacePosts,
+    generalUrls: [...latentSpacePosts, ...businessStoryLinks],
     aiNewsPosts,
     rawRedditPosts: redditPosts,
   };

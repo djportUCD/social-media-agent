@@ -104,6 +104,15 @@ export const LINKEDIN_MAIN_ORGANIZATION_ID = "LINKEDIN_MAIN_ORGANIZATION_ID";
 // Simplified text only mode
 export const TEXT_ONLY_MODE = "textOnlyMode";
 
+export const BUSINESS_PLUGIN_ID = "businessPluginId";
+export const PLATFORM_PLUGIN_ID = "platformPluginId";
+export const SOCIAL_MODEL_PROVIDER = "socialModelProvider";
+export const SOCIAL_MODEL_NAME = "socialModelName";
+export const SOCIAL_OLLAMA_BASE_URL = "socialOllamaBaseUrl";
+export const BUSINESS_STORY_LIMIT = "businessStoryLimit";
+export const BUSINESS_STORY_LOOKBACK_HOURS = "businessStoryLookbackHours";
+export const BUSINESS_STORY_CACHE_ONLY = "businessStoryCacheOnly";
+
 export const SKIP_CONTENT_RELEVANCY_CHECK = "skipContentRelevancyCheck";
 
 export const SKIP_USED_URLS_CHECK = "skipUsedUrlsCheck";

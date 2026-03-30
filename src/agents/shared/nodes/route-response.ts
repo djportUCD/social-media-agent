@@ -1,5 +1,6 @@
-import { ChatAnthropic } from "@langchain/anthropic";
+import { LangGraphRunnableConfig } from "@langchain/langgraph";
 import { z } from "zod";
+import { createSocialStructuredOutputModel } from "../../../plugins/model-factory.js";
 
 const ROUTE_RESPONSE_PROMPT = `You are an AI assistant tasked with routing a user's response to one of two possible routes based on their intention. The two possible routes are:
 
@@ -83,18 +84,15 @@ interface RouteResponseArgs {
   post: string;
   dateOrPriority: string;
   userResponse: string;
+  config?: LangGraphRunnableConfig;
 }
 
 export async function routeResponse({
   post,
   dateOrPriority,
   userResponse,
+  config,
 }: RouteResponseArgs) {
-  const model = new ChatAnthropic({
-    model: "claude-sonnet-4-5",
-    temperature: 0,
-  });
-
   const routeSchema = z.object({
     route: z.enum([
       "rewrite_post",
@@ -103,7 +101,11 @@ export async function routeResponse({
       "rewrite_with_split_url",
     ]),
   });
-  const modelWithSchema = model.withStructuredOutput(routeSchema, {
+  const modelWithSchema = createSocialStructuredOutputModel({
+    config,
+    purpose: "route-response",
+    temperature: 0,
+    schema: routeSchema,
     name: "route",
   });
 

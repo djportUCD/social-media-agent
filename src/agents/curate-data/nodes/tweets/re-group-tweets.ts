@@ -1,7 +1,7 @@
-import { ChatOpenAI } from "@langchain/openai";
 import { CurateDataState } from "../../state.js";
 import { GROUP_BY_CONTENT_CRITERIA } from "./prompts.js";
 import { TweetsGroupedByContent, TweetV2WithURLs } from "../../types.js";
+import { createSocialTextModel } from "../../../../plugins/model-factory.js";
 
 const RE_GROUP_TWEETS = `You're an advanced AI software engineer who's working on curating education content about AI. A previous step your colleague took was to group tweets about AI, LLMs, and related software into unique topics. After this, a third party identified potential issues with some of the groups.
 These groups which will be provided to you MAY need to be combined, or separated. Your task is to carefully review each group, and the tweets within each group. After this, inspect them all in the context of the entire list of groups passed to you.
@@ -135,7 +135,10 @@ export async function reGroupTweets(
     return {};
   }
 
-  const model = new ChatOpenAI({ model: "o1", streaming: false });
+  const model = createSocialTextModel({
+    purpose: "generate-report",
+    temperature: 0,
+  });
 
   const { include, review } = splitGroups(
     state.tweetsGroupedByContent,

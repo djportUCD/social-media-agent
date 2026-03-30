@@ -16,8 +16,6 @@ const VERIFY_RELEVANT_CONTENT_PROMPT = `You are a highly regarded marketing empl
 You're given a summary/report on some content a third party submitted to you in hopes of having it promoted by you.
 You need to verify if the content is relevant to the following context before approving or denying the request.
 
-${getPrompts().businessContext}
-
 ${getPrompts().contentValidationPrompt}
 
 Given this context, examine the summary/report closely, and determine if the content is relevant to your company's products.
@@ -62,6 +60,7 @@ export async function verifyYouTubeContent(
     await verifyContentIsRelevant(summary, {
       systemPrompt: VERIFY_RELEVANT_CONTENT_PROMPT,
       schema: RELEVANCY_SCHEMA,
+      config,
     })
   ) {
     return returnValue;

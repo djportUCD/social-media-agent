@@ -25,8 +25,6 @@ You're provided with a Tweet, and the page content of links in the Tweet. This T
 Your task is to carefully read over the entire page, and determine whether or not the content actually implements and is relevant to your company's products.
 You're doing this to ensure the content is relevant to your company, and it can be used as marketing material to promote your company.
 
-${getPrompts().businessContext}
-
 ${getPrompts().contentValidationPrompt}
 
 Given this context, examine the entire Tweet plus webpage content closely, and determine if the content implements your company's products.
@@ -82,6 +80,7 @@ export async function validateTweetContent(
     await verifyContentIsRelevant(context, {
       systemPrompt: VERIFY_RELEVANT_CONTENT_PROMPT,
       schema: RELEVANCY_SCHEMA,
+      config,
     })
   ) {
     return returnValue;

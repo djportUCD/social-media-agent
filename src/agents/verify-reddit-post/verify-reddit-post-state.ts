@@ -4,7 +4,14 @@ import {
   VerifyLinksGraphConfigurableAnnotation,
   VerifyLinksResultAnnotation,
 } from "../verify-links/verify-links-state.js";
-import { SKIP_CONTENT_RELEVANCY_CHECK } from "../generate-post/constants.js";
+import {
+  BUSINESS_PLUGIN_ID,
+  PLATFORM_PLUGIN_ID,
+  SKIP_CONTENT_RELEVANCY_CHECK,
+  SOCIAL_MODEL_NAME,
+  SOCIAL_MODEL_PROVIDER,
+  SOCIAL_OLLAMA_BASE_URL,
+} from "../generate-post/constants.js";
 
 export const VerifyRedditPostAnnotation = Annotation.Root({
   /**
@@ -39,4 +46,9 @@ export type VerifyRedditPostConfigurable =
 
 export const BASE_VERIFY_REDDIT_CONFIG: VerifyRedditPostConfigurable = {
   [SKIP_CONTENT_RELEVANCY_CHECK]: undefined,
+  [BUSINESS_PLUGIN_ID]: undefined,
+  [PLATFORM_PLUGIN_ID]: undefined,
+  [SOCIAL_MODEL_PROVIDER]: undefined,
+  [SOCIAL_MODEL_NAME]: undefined,
+  [SOCIAL_OLLAMA_BASE_URL]: undefined,
 };

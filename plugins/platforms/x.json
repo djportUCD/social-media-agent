@@ -1,0 +1,26 @@
+{
+  "id": "x",
+  "displayName": "X",
+  "aliases": [
+    "twitter",
+    "short-feed"
+  ],
+  "hardCharacterLimit": 280,
+  "preferredLength": "Keep single posts tight. Hooks should land in the first few words and the rest should move quickly.",
+  "tone": "Sharp, concise, and high-signal.",
+  "structureTips": [
+    "Start with the strongest noun or result",
+    "Keep supporting detail brief",
+    "Prefer one clear CTA or link handoff"
+  ],
+  "trendSignals": [
+    "Short, punchy framing tends to outperform long setup",
+    "Specificity, novelty, and clean formatting matter more than polish"
+  ],
+  "avoid": [
+    "Long explanatory intros",
+    "Dense sentence structure",
+    "Broad generic marketing copy"
+  ],
+  "trendResearchUrls": []
+}

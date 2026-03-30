@@ -201,6 +201,7 @@ export async function humanNode<
       post: state.post,
       dateOrPriority: defaultDateString,
       userResponse: response.args,
+      config,
     });
 
     if (route === "rewrite_post") {

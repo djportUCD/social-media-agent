@@ -1,6 +1,6 @@
-import { ChatOpenAI } from "@langchain/openai";
 import { RepurposerState } from "../types.js";
 import { formatReportForPrompt } from "../utils.js";
+import { createSocialTextModel } from "../../../plugins/model-factory.js";
 
 const GENERATE_CAMPAIGN_PLAN_PROMPT = `You're a highly skilled marketing professional, working on crafting a thoughtful and detailed marketing campaign plan for a new series of posts for your Twitter and LinkedIn pages.
 
@@ -72,9 +72,9 @@ some details text here
 export async function generateCampaignPlan(
   state: RepurposerState,
 ): Promise<Partial<RepurposerState>> {
-  const model = new ChatOpenAI({
-    model: "o1",
-    streaming: false,
+  const model = createSocialTextModel({
+    purpose: "generate-report",
+    temperature: 0,
   });
 
   const formattedUserPrompt = GENERATE_CAMPAIGN_PLAN_PROMPT.replace(

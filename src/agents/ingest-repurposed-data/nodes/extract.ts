@@ -1,11 +1,11 @@
 import { z } from "zod";
 import { IngestRepurposedDataState, RepurposedContent } from "../types.js";
-import { ChatAnthropic } from "@langchain/anthropic";
 import { isValidUrl } from "../../utils.js";
 import { traceable } from "langsmith/traceable";
 import { DEFAULT_POST_QUANTITY } from "../constants.js";
 import { MessageContentText } from "@langchain/core/messages";
 import { getPublicFileUrls } from "../../../clients/slack/utils.js";
+import { createSocialTextModel } from "../../../plugins/model-factory.js";
 
 const EXTRACT_CONTENT_PROMPT = `You're a helpful AI assistant, tasked with extracting content from a Slack message.
 
@@ -55,10 +55,10 @@ const extractionSchema = z.object({
 async function extractContentsFunc(
   messageText: string,
 ): Promise<Omit<RepurposedContent, "attachmentUrls"> | undefined> {
-  const model = new ChatAnthropic({
-    model: "claude-sonnet-4-5",
+  const model = (createSocialTextModel({
+    purpose: "verify-content",
     temperature: 0,
-  }).bindTools(
+  }) as any).bindTools(
     [
       {
         name: "extract_content",

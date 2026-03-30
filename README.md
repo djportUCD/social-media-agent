@@ -8,9 +8,11 @@ This repository contains an 'agent' which can take in a URL, and generate a Twit
 
 - [Quickstart](#quickstart)
   - [Environment variables](#set-environment-variables)
+  - [Use Local Ollama in Quickstart](#use-local-ollama-in-quickstart)
   - [LangGraph Server](#start-the-langgraph-server)
 - [Full setup](#advanced-setup)
   - [Environment variables](#set-environment-variables-1)
+  - [Use Local Ollama in Full Setup](#use-local-ollama-in-full-setup)
   - [Authentication](#setup-authentication)
   - [Supabase](#setup-supabase)
   - [Slack](#setup-slack)
@@ -24,6 +26,7 @@ This repository contains an 'agent' which can take in a URL, and generate a Twit
   - [Using the local inbox](#using-the-local-inbox)
 - [Customization](#customization)
   - [Prompts](#prompts)
+  - [Plugins](#plugins)
   - [Post Style](#post-style)
 
 # Quickstart
@@ -92,6 +95,29 @@ FIRECRAWL_API_KEY=
 ARCADE_API_KEY=
 ```
 
+### Use Local Ollama in Quickstart
+
+There is now a repo-level local inference path for the text workflows. If you want to run the agent against a local Ollama server instead of Anthropic or OpenAI, start Ollama first and set these variables in `.env`:
+
+```bash
+SOCIAL_MODEL_PROVIDER=ollama
+SOCIAL_MODEL_NAME=qwen2.5:14b
+SOCIAL_OLLAMA_BASE_URL=http://127.0.0.1:11434
+TEXT_ONLY_MODE=true
+```
+
+Then pull the model you want to use:
+
+```bash
+ollama pull qwen2.5:14b
+```
+
+Notes:
+
+- `TEXT_ONLY_MODE=true` is the safest local-first setting because some upstream multimodal and image flows still rely on external services.
+- The current local model wiring is implemented through [src/plugins/model-factory.ts](c:\Users\djport\social2\social-media-agent\src\plugins\model-factory.ts) and selected via the plugin/runtime layer in [src/plugins/runtime.ts](c:\Users\djport\social2\social-media-agent\src\plugins\runtime.ts).
+- The plugin-specific Ollama example also still exists in [plugins/README.md](c:\Users\djport\social2\social-media-agent\plugins\README.md).
+
 If you plan to post to LinkedIn as an organization (rather than as yourself), you'll also need to set:
 
 ```bash
@@ -120,17 +146,19 @@ Click [here](https://langchain-ai.github.io/langgraph/cloud/reference/cli/) to r
 To start the LangGraph server, run this script:
 
 ```bash
-yarn langgraph:in_mem:up
+yarn dev
 ```
 
 Under the hood, this will execute the following command:
 
 ```bash
-npx @langchain/langgraph-cli dev --port 54367
+yarn stories:refresh && npx @langchain/langgraph-cli@latest dev --port 54367
 ```
 
 > [!NOTE]
 > The first time running this command (or if a new version of `@langchain/langgraph-cli` has been released), it will ask you to accept an install for the CLI. Enter `y` to accept.
+> [!TIP]
+> `yarn dev` now refreshes the local business-story cache first. If you want the bare upstream server startup without that preflight step, run `yarn langgraph:in_mem:up` directly.
 
 Once the server is ready, you can execute the following command to generate a post:
 
@@ -189,6 +217,25 @@ Copy the values of the full env example file `.env.full.example` to `.env`, then
 ```bash
 cp .env.full.example .env
 ```
+
+### Use Local Ollama in Full Setup
+
+If you want the main text generation path to run against a local Ollama server, add these variables to `.env`:
+
+```bash
+SOCIAL_MODEL_PROVIDER=ollama
+SOCIAL_MODEL_NAME=qwen2.5:14b
+SOCIAL_OLLAMA_BASE_URL=http://127.0.0.1:11434
+TEXT_ONLY_MODE=true
+```
+
+Then pull the model locally before starting the server:
+
+```bash
+ollama pull qwen2.5:14b
+```
+
+`TEXT_ONLY_MODE=true` is recommended for a fully local setup. The text-generation path is wired for Ollama, but some upstream image and multimodal features still expect external providers.
 
 ### Setup authentication
 
@@ -412,6 +459,44 @@ This agent is setup to generate posts for LangChain, using LangChain products as
 - `POST_CONTENT_RULES` - A set of general writing style/content guidelines for the agent to follow when generating a post.
 
 The prompt for the marketing report is located in the [`generate-post/nodes/generate-report/prompts.ts`](./src/agents/generate-post/nodes/generate-report/prompts.ts) file. You likely don't need to update this, as it's already structured to be general.
+
+## Plugins
+
+This repository now supports a lightweight plugin layer that keeps most of your custom business logic outside the core graph code.
+
+- Business plugins live in [`plugins/businesses`](./plugins/businesses) and describe the business, audience, voice, goals, themes, per-platform analytics signals, and story-discovery rules.
+- Platform plugins live in [`plugins/platforms`](./plugins/platforms) and describe character limits, preferred post length, tone, trend signals, and optional URLs to trend research sources.
+- `yarn stories:refresh` pulls RSS-based stories for each configured business into [`stories/cache`](./stories).
+- `yarn stories:run` starts a `supervisor` run with `sources: ["business_stories"]` so those cached stories flow into the existing reporting/post-generation pipeline.
+- `supervisor` and `curate_data` now default to the `business_stories` source when no explicit source list is provided.
+- The `business_stories` curate-data source sends those links into the existing general-content verification path, so the rest of the graph can treat them like any other story URL.
+- The runtime will fall back to the `default` business plugin and the `crosspost` platform plugin if you do not select one explicitly.
+
+Set these environment variables to choose a business, platform profile, and model provider:
+
+```bash
+SOCIAL_BUSINESS_ID=mmrrc
+SOCIAL_PLATFORM_PROFILE_ID=linkedin
+SOCIAL_MODEL_PROVIDER=ollama
+SOCIAL_MODEL_NAME=qwen2.5:14b
+SOCIAL_OLLAMA_BASE_URL=http://127.0.0.1:11434
+```
+
+If you want the platform plugin to fetch and summarize trend pages at runtime, set:
+
+```bash
+ENABLE_PLATFORM_TREND_FETCH=true
+```
+
+This is optional. If it is disabled, the agent will use only the static trend and analytics guidance from your plugin files.
+
+The current business plugin set is:
+
+- UC Davis Mouse Biology Program
+- Mutant Mouse Resource and Research Centers (MMRRC)
+- UC Davis NAMs Testing Center
+
+For a plugin-first customization workflow, keep new businesses and platform profiles under [`plugins/README.md`](./plugins/README.md) and avoid editing core prompt code unless you need a deeper behavioral change.
 
 ## Post Style
 

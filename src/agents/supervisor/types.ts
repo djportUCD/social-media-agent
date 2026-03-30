@@ -3,4 +3,5 @@ export type Source =
   | "twitter"
   | "latent_space"
   | "ai_news"
+  | "business_stories"
   | "reddit";

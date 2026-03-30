@@ -1,0 +1,26 @@
+{
+  "id": "crosspost",
+  "displayName": "Cross-posted Short Form",
+  "aliases": [
+    "twitter",
+    "linkedin"
+  ],
+  "hardCharacterLimit": 280,
+  "preferredLength": "Aim for roughly 140-240 characters before URLs when the same copy will be reused across LinkedIn and X.",
+  "tone": "Fast, clear, and broadly readable on both professional and real-time feeds.",
+  "structureTips": [
+    "Lead with the most interesting outcome or claim",
+    "Keep the body to one core idea",
+    "Use a short CTA with one link"
+  ],
+  "trendSignals": [
+    "Shorter hooks outperform long warm-ups on mixed-channel cross-posts",
+    "Specific benefits beat abstract branding language"
+  ],
+  "avoid": [
+    "Wall-of-text paragraphs",
+    "Multiple hashtags",
+    "Several CTAs in one post"
+  ],
+  "trendResearchUrls": []
+}

@@ -1,6 +1,6 @@
-import { ChatOpenAI } from "@langchain/openai";
 import { CurateDataState } from "../../state.js";
 import { GROUP_BY_CONTENT_CRITERIA } from "./prompts.js";
+import { createSocialTextModel } from "../../../../plugins/model-factory.js";
 
 const GROUP_BY_CONTENT_PROMPT = `You're an advanced AI software engineer who's working on curating education content about AI.
 You're given a dump of Tweets about AI, LLMs, or related software. Your task is to carefully inspect each and every tweet the user provides, thinking about the meaning, context, and significance of each tweet.
@@ -66,7 +66,10 @@ function parseGeneration(
 export async function groupTweetsByContent(
   state: CurateDataState,
 ): Promise<Partial<CurateDataState>> {
-  const model = new ChatOpenAI({ model: "o1", streaming: false });
+  const model = createSocialTextModel({
+    purpose: "generate-report",
+    temperature: 0,
+  });
 
   const formattedUserPrompt = `Here are the tweets you should inspect, and group:
 <all-tweets>

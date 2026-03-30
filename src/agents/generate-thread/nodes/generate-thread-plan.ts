@@ -1,6 +1,6 @@
-import { ChatOpenAI } from "@langchain/openai";
 import { formatReportsForPrompt } from "../utils.js";
 import { GenerateThreadState } from "../state.js";
+import { createSocialTextModel } from "../../../plugins/model-factory.js";
 
 const PROMPT = `You're an expert in social media and marketing. Your newest assignment is to create a detailed outline/plan for a Twitter thread.
 You're given a single/series of marketing reports on the subject of the thread.
@@ -74,9 +74,9 @@ function parseTotalPosts(generation: string): number | undefined {
 export async function generateThreadPlan(
   state: GenerateThreadState,
 ): Promise<Partial<GenerateThreadState>> {
-  const model = new ChatOpenAI({
-    model: "o1",
-    streaming: false,
+  const model = createSocialTextModel({
+    purpose: "generate-report",
+    temperature: 0,
   });
 
   const userMessage = `Here are the report(s) you should use to plan the thread:

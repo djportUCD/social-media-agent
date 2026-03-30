@@ -1,14 +1,15 @@
 import { Client } from "@langchain/langgraph-sdk";
 import { LangGraphRunnableConfig } from "@langchain/langgraph";
 import { BaseGeneratePostState, BaseGeneratePostUpdate } from "./types.js";
-import { ChatAnthropic } from "@langchain/anthropic";
 import {
   getReflectionsPrompt,
   REFLECTIONS_PROMPT,
 } from "../../../../utils/reflections.js";
+import { createSocialTextModel } from "../../../../plugins/model-factory.js";
+import { buildPluginPromptContext } from "../../../../plugins/runtime.js";
 
-const REWRITE_POST_PROMPT = `You're a highly regarded marketing employee, working on crafting thoughtful and engaging content for the LinkedIn and Twitter pages.
-You wrote a post for the LinkedIn and Twitter pages, however your boss has asked for some changes to be made before it can be published.
+const REWRITE_POST_PROMPT = `You're a highly regarded marketing employee, working on crafting thoughtful and engaging social media content.
+You wrote a post, however your boss has asked for some changes to be made before it can be published.
 
 The original post you wrote is as follows:
 <original-post>
@@ -60,8 +61,9 @@ export async function rewritePost<
     throw new Error("No user response found");
   }
 
-  const rewritePostModel = new ChatAnthropic({
-    model: "claude-sonnet-4-5",
+  const rewritePostModel = createSocialTextModel({
+    config,
+    purpose: "rewrite-post",
     temperature: 0.5,
   });
 
@@ -75,11 +77,12 @@ export async function rewritePost<
     "{originalPost}",
     state.post,
   ).replace("{reflectionsPrompt}", reflectionsPrompt);
+  const pluginPromptContext = await buildPluginPromptContext(config);
 
   const revisePostResponse = await rewritePostModel.invoke([
     {
       role: "system",
-      content: systemPrompt,
+      content: `${systemPrompt}\n\n${pluginPromptContext}`,
     },
     {
       role: "user",

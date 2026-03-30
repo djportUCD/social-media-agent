@@ -1,6 +1,8 @@
-import { ChatAnthropic } from "@langchain/anthropic";
+import { LangGraphRunnableConfig } from "@langchain/langgraph";
 import { traceable } from "langsmith/traceable";
 import { z } from "zod";
+import { createSocialStructuredOutputModel } from "../../../plugins/model-factory.js";
+import { buildPluginPromptContext } from "../../../plugins/runtime.js";
 
 const RELEVANCY_SCHEMA = z
   .object({
@@ -22,20 +24,22 @@ async function verifyContentIsRelevantFunc(
   args: {
     systemPrompt: string;
     schema: z.ZodType<z.infer<typeof RELEVANCY_SCHEMA>>;
+    config?: LangGraphRunnableConfig;
   },
 ): Promise<boolean> {
-  const relevancyModel = new ChatAnthropic({
-    model: "claude-sonnet-4-5",
+  const pluginPromptContext = await buildPluginPromptContext(args.config);
+  const relevancyModel = createSocialStructuredOutputModel({
+    config: args.config,
+    purpose: "verify-content",
     temperature: 0,
-    // TODO: Type casting as any here shouldn't be required...
-  }).withStructuredOutput(args.schema as any, {
+    schema: args.schema as any,
     name: "relevancy",
   });
 
   const { relevant } = await relevancyModel.invoke([
     {
       role: "system",
-      content: args.systemPrompt,
+      content: `${args.systemPrompt}\n\n${pluginPromptContext}`,
     },
     {
       role: "user",

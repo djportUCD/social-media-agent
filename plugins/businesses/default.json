@@ -1,0 +1,115 @@
+{
+  "id": "default",
+  "displayName": "UC Davis Mouse Biology Program",
+  "summary": "The UC Davis Mouse Biology Program supports researchers with genetically engineered mouse model generation, phenotyping, colony management, cryopreservation, and translational mouse biology services.",
+  "audience": [
+    "biomedical researchers",
+    "principal investigators",
+    "translational science teams",
+    "mouse model collaborators"
+  ],
+  "voice": [
+    "scientifically credible",
+    "pragmatic",
+    "helpful",
+    "translational"
+  ],
+  "goals": [
+    "highlight mouse model capabilities",
+    "connect discoveries to research services",
+    "drive inquiries from investigators and partners"
+  ],
+  "keyThemes": [
+    "genetically engineered mouse models",
+    "phenotyping",
+    "germ-free and microbiota-defined mice",
+    "translational disease research",
+    "stakeholder updates"
+  ],
+  "ctaStyle": "Favor clear, research-oriented calls to action that point investigators to services, collaboration pathways, or deeper program updates.",
+  "analyticsByPlatform": {
+    "crosspost": {
+      "topPerformingPatterns": [
+        "Lead with the scientific outcome or capability before program background",
+        "Use one concrete service or research example instead of a broad catalog"
+      ],
+      "weakSignals": [
+        "Long institutional intros before the scientific value",
+        "Multiple service mentions in one short post"
+      ],
+      "correlations": [
+        "Posts that tie a mouse model capability to disease relevance perform better than general awareness messaging"
+      ]
+    },
+    "linkedin": {
+      "topPerformingPatterns": [
+        "A short scientific hook followed by translational context improves dwell time",
+        "Service posts perform better when they explain how the capability accelerates research rigor or reproducibility"
+      ],
+      "weakSignals": [
+        "Thread-like formatting",
+        "Overly promotional claims without scientific context"
+      ],
+      "correlations": [
+        "LinkedIn engagement is stronger when the second sentence explains why the model or service matters to the research workflow"
+      ]
+    },
+    "x": {
+      "topPerformingPatterns": [
+        "A crisp capability-first hook with one research use case",
+        "Specific technical nouns outperform generic lab language"
+      ],
+      "weakSignals": [
+        "Long explanatory setup",
+        "Dense multi-clause sentences"
+      ],
+      "correlations": [
+        "Shorter posts that name the model, phenotype, or service directly correlate with stronger click-through"
+      ]
+    }
+  },
+  "storyDiscovery": {
+    "keywords": [
+      "mouse biology",
+      "mouse model",
+      "phenotyping",
+      "genome editing",
+      "genetics",
+      "genomics",
+      "model organism",
+      "developmental biology",
+      "disease model",
+      "CRISPR mouse",
+      "germ-free mouse",
+      "microbiota-defined mouse",
+      "translational research"
+    ],
+    "excludedKeywords": [
+      "rat control",
+      "pet mouse",
+      "gaming mouse"
+    ],
+    "excludedDomains": [
+      "mbp.mousebiology.org",
+      "mousebiology.org",
+      "ucdavis.edu"
+    ],
+    "rssFeeds": [
+      "https://www.nature.com/subjects/biological-sciences.rss",
+      "https://www.sciencedaily.com/rss/plants_animals/biology.xml",
+      "https://news.mit.edu/rss/topic/biology",
+      "https://phys.org/rss-feed/biology-news/",
+      "https://www.science.org/rss/news_current.xml"
+    ],
+    "preferredDomains": [
+      "nature.com",
+      "sciencedaily.com",
+      "news.mit.edu",
+      "phys.org",
+      "science.org",
+      "nih.gov"
+    ],
+    "maxStories": 8,
+    "lookbackHours": 8760
+  }
+}

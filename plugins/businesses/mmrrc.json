@@ -1,0 +1,106 @@
+{
+  "id": "mmrrc",
+  "displayName": "Mutant Mouse Resource and Research Centers (MMRRC)",
+  "summary": "The Mutant Mouse Resource and Research Centers are the NIH-funded national repository network that preserves, validates, and distributes valuable mutant mouse models to the biomedical research community.",
+  "audience": [
+    "biomedical researchers",
+    "repository users",
+    "mouse genetics investigators",
+    "NIH-funded resource stakeholders"
+  ],
+  "voice": [
+    "authoritative",
+    "scientifically grounded",
+    "national-resource focused",
+    "clear"
+  ],
+  "goals": [
+    "increase awareness of repository holdings",
+    "show the value of national mouse resource infrastructure",
+    "drive investigator requests and submissions"
+  ],
+  "keyThemes": [
+    "mouse repositories",
+    "strain distribution",
+    "quality control and genotyping",
+    "reproducibility",
+    "cryopreservation"
+  ],
+  "ctaStyle": "Point investigators toward strain access, submission pathways, repository tools, or supporting resources rather than generic brand CTAs.",
+  "analyticsByPlatform": {
+    "linkedin": {
+      "topPerformingPatterns": [
+        "National infrastructure framing performs well when tied to a concrete researcher benefit",
+        "Posts that mention reproducibility, QC, or access tend to feel more useful than awareness-only updates"
+      ],
+      "weakSignals": [
+        "Repository jargon without a researcher-facing explanation",
+        "Too many program acronyms in the opening line"
+      ],
+      "correlations": [
+        "Investigator-facing language about access, rigor, and preserved strains aligns with stronger engagement"
+      ]
+    },
+    "x": {
+      "topPerformingPatterns": [
+        "Short posts naming a specific strain, tool, or resource update perform better",
+        "Practical utility beats institutional description"
+      ],
+      "weakSignals": [
+        "Long context-setting threads",
+        "General statements about supporting science"
+      ],
+      "correlations": [
+        "Concrete resource updates correlate better than broad descriptions of the consortium"
+      ]
+    }
+  },
+  "storyDiscovery": {
+    "keywords": [
+      "gene",
+      "genetic",
+      "genetics",
+      "genomics",
+      "mouse repository",
+      "mouse model repository",
+      "mutant mouse model",
+      "mouse strain",
+      "resource sharing",
+      "cryopreservation",
+      "genotyping",
+      "genotype",
+      "mutation",
+      "MiniMUGA",
+      "mutant mouse",
+      "genetic drift"
+    ],
+    "excludedKeywords": [
+      "rat control",
+      "pet mouse",
+      "computer mouse"
+    ],
+    "excludedDomains": [
+      "mmrrc.org",
+      "med.unc.edu/mmrrc",
+      "mu-mmrrc.com",
+      "mmrrc.ucdavis.edu",
+      "jax.org/research-and-faculty/resources/mutant-mouse-resource-research-center"
+    ],
+    "rssFeeds": [
+      "https://www.sciencedaily.com/rss/health_medicine/genes.xml",
+      "https://www.genengnews.com/feed/",
+      "https://www.nature.com/ng.rss",
+      "https://journals.plos.org/plosgenetics/feed/atom"
+    ],
+    "preferredDomains": [
+      "nature.com",
+      "sciencedaily.com",
+      "the-scientist.com",
+      "journals.plos.org",
+      "genengnews.com",
+      "nih.gov"
+    ],
+    "maxStories": 8,
+    "lookbackHours": 17520
+  }
+}

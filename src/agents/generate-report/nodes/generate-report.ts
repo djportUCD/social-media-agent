@@ -1,8 +1,8 @@
-import { ChatOpenAI } from "@langchain/openai";
 import { GenerateReportState } from "../state.js";
 import { GENERATE_REPORT_PROMPT_O1 } from "../prompts.js";
 import { TweetsGroupedByContent } from "../../curate-data/types.js";
 import { formatImageMessages } from "../utils.js";
+import { createSocialTextModel } from "../../../plugins/model-factory.js";
 
 interface FormatReportPromptParams {
   pageContents?: string[];
@@ -78,9 +78,9 @@ export async function generateReport(
     tweetGroup: state.tweetGroup,
   });
 
-  const reportO1Model = new ChatOpenAI({
-    model: "o1",
-    streaming: false,
+  const reportO1Model = createSocialTextModel({
+    purpose: "generate-report",
+    temperature: 0,
   });
 
   const formattedReportPrompt = GENERATE_REPORT_PROMPT_O1.replace(
@@ -109,6 +109,7 @@ export async function generateReport(
       {
         report: parseGeneration(report.content as string),
         keyDetails: state.keyReportDetails,
+        sourceContext: state.sourceContext,
       },
     ],
   };

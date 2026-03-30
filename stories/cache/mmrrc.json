@@ -1,0 +1,122 @@
+{
+  "businessId": "mmrrc",
+  "generatedAt": "2026-03-30T20:21:52.098Z",
+  "links": [
+    "https://www.sciencedaily.com/releases/2026/03/260318033143.htm",
+    "https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1012063",
+    "https://www.genengnews.com/topics/omics/autism-risk-genes-largely-shared-across-global-populations/",
+    "https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1012099",
+    "https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1012097",
+    "https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1012096",
+    "https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1012094",
+    "https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1012067"
+  ],
+  "stories": [
+    {
+      "title": "The surprising cancer link between cats and humans",
+      "link": "https://www.sciencedaily.com/releases/2026/03/260318033143.htm",
+      "description": "Scientists have mapped the genetics of cancer in cats for the first time at scale, uncovering major overlaps with human cancers. Key mutations—like those linked to breast cancer—appear in both species, and some human cancer drugs may also work in cats. Because pets share our environments, these similarities could reveal shared causes of cancer. The research could lead to new treatments that benefit both animals and humans.",
+      "publishedAt": "Wed, 18 Mar 2026 19:12:17 EDT",
+      "matchedKeywords": [
+        "gene",
+        "genetic",
+        "genetics",
+        "mutation"
+      ],
+      "sourceFeed": "https://www.sciencedaily.com/rss/health_medicine/genes.xml",
+      "score": 14
+    },
+    {
+      "title": "Aneuploidy alleviates the cell proliferation defect caused by mutations affecting origin licensing in <i>Saccharomyces cerevisiae</i>",
+      "link": "https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1012063",
+      "description": "",
+      "publishedAt": "2026-02-27T14:00:00Z",
+      "matchedKeywords": [
+        "gene",
+        "genetic",
+        "genetics",
+        "mutation"
+      ],
+      "sourceFeed": "https://journals.plos.org/plosgenetics/feed/atom",
+      "score": 14
+    },
+    {
+      "title": "Autism Risk Genes Largely Shared Across Global Populations",
+      "link": "https://www.genengnews.com/topics/omics/autism-risk-genes-largely-shared-across-global-populations/",
+      "description": "<p>A large autism genomics study in Latin American populations identifies shared risk genes across ancestries, supporting universal genetic architecture, improving diagnostic equity, and highlighting the importance of diverse representation in genetic research.</p>\n<p>The post <a href=\"https://www.genengnews.com/topics/omics/autism-risk-genes-largely-shared-across-global-populations/\">Autism Risk Genes Largely Shared Across Global Populations</a> appeared first on <a href=\"https://www.genengnews.com\">GEN - Genetic Engineering and Biotechnology News</a>.</p>",
+      "publishedAt": "Mon, 30 Mar 2026 19:06:51 +0000",
+      "matchedKeywords": [
+        "gene",
+        "genetic",
+        "genomics"
+      ],
+      "sourceFeed": "https://www.genengnews.com/feed/",
+      "score": 12.947904016203704
+    },
+    {
+      "title": "Correction: How convincing is a matching Y-chromosome profile?",
+      "link": "https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1012099",
+      "description": "",
+      "publishedAt": "2026-03-30T14:00:00Z",
+      "matchedKeywords": [
+        "gene",
+        "genetic",
+        "genetics"
+      ],
+      "sourceFeed": "https://journals.plos.org/plosgenetics/feed/atom",
+      "score": 12.734813738425926
+    },
+    {
+      "title": "Mms4 chromosomal association reveals functional relationships between meiotic crossover pathways in budding yeast",
+      "link": "https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1012097",
+      "description": "",
+      "publishedAt": "2026-03-30T14:00:00Z",
+      "matchedKeywords": [
+        "gene",
+        "genetic",
+        "genetics"
+      ],
+      "sourceFeed": "https://journals.plos.org/plosgenetics/feed/atom",
+      "score": 12.734813738425926
+    },
+    {
+      "title": "Post-translational modifications of GlmR integrate metabolic and stress signals to maintain cell envelope homeostasis in <i>Bacillus subtilis</i>",
+      "link": "https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1012096",
+      "description": "",
+      "publishedAt": "2026-03-30T14:00:00Z",
+      "matchedKeywords": [
+        "gene",
+        "genetic",
+        "genetics"
+      ],
+      "sourceFeed": "https://journals.plos.org/plosgenetics/feed/atom",
+      "score": 12.734813738425926
+    },
+    {
+      "title": "mTOR signaling regulates demand-adapted hematopoiesis and metabolic reprogramming required for an effective cellular immune response in <i>Drosophila melanogaster</i> larvae",
+      "link": "https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1012094",
+      "description": "",
+      "publishedAt": "2026-03-24T14:00:00Z",
+      "matchedKeywords": [
+        "gene",
+        "genetic",
+        "genetics"
+      ],
+      "sourceFeed": "https://journals.plos.org/plosgenetics/feed/atom",
+      "score": 11
+    },
+    {
+      "title": "Mapping the gene regulatory landscape of archaic hominin introgression in modern Papuans",
+      "link": "https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1012067",
+      "description": "",
+      "publishedAt": "2026-03-24T14:00:00Z",
+      "matchedKeywords": [
+        "gene",
+        "genetic",
+        "genetics"
+      ],
+      "sourceFeed": "https://journals.plos.org/plosgenetics/feed/atom",
+      "score": 11
+    }
+  ]
+}

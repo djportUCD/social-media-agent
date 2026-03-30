@@ -1,6 +1,13 @@
 import { Annotation } from "@langchain/langgraph";
 import { filterUnwantedImageUrls } from "../utils.js";
-import { SKIP_CONTENT_RELEVANCY_CHECK } from "../generate-post/constants.js";
+import {
+  BUSINESS_PLUGIN_ID,
+  PLATFORM_PLUGIN_ID,
+  SKIP_CONTENT_RELEVANCY_CHECK,
+  SOCIAL_MODEL_NAME,
+  SOCIAL_MODEL_PROVIDER,
+  SOCIAL_OLLAMA_BASE_URL,
+} from "../generate-post/constants.js";
 
 export const VerifyLinksGraphSharedAnnotation = Annotation.Root({
   /**
@@ -64,4 +71,9 @@ export const VerifyLinksGraphConfigurableAnnotation = Annotation.Root({
    * Whether or not to skip the content relevancy check.
    */
   [SKIP_CONTENT_RELEVANCY_CHECK]: Annotation<boolean | undefined>(),
+  [BUSINESS_PLUGIN_ID]: Annotation<string | undefined>(),
+  [PLATFORM_PLUGIN_ID]: Annotation<string | undefined>(),
+  [SOCIAL_MODEL_PROVIDER]: Annotation<string | undefined>(),
+  [SOCIAL_MODEL_NAME]: Annotation<string | undefined>(),
+  [SOCIAL_OLLAMA_BASE_URL]: Annotation<string | undefined>(),
 });

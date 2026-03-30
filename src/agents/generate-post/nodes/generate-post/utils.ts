@@ -18,8 +18,12 @@ export function parseGeneration(generation: string): string {
   return reportMatch ? reportMatch[1].trim() : generation;
 }
 
-export function formatPrompt(report: string, relevantLinks: string[]): string {
-  return `Here is the report I wrote on the content I'd like promoted by LangChain:
+export function formatPrompt(
+  report: string,
+  relevantLinks: string[],
+  businessDisplayName: string,
+): string {
+  return `Here is the report I wrote on the content I'd like promoted by ${businessDisplayName}:
 <report>
 ${report}
 </report>

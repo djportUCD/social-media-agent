@@ -1,0 +1,44 @@
+{
+  "businessId": "default",
+  "generatedAt": "2026-03-30T20:21:51.873Z",
+  "links": [
+    "https://phys.org/news/2026-03-cells-differently-clues-skin-inflammatory.html",
+    "https://phys.org/news/2026-03-rna-drug-reveals.html",
+    "https://news.mit.edu/2025/3-questions-yunha-hwang-using-computation-study-worlds-best-single-celled-chemists-1215"
+  ],
+  "stories": [
+    {
+      "title": "Why cells stick differently: New clues could inform skin and inflammatory disease research",
+      "link": "https://phys.org/news/2026-03-cells-differently-clues-skin-inflammatory.html",
+      "description": "Scientists led by Sergey Troyanovsky, Ph.D., professor of Dermatology and of Cell and Developmental Biology, have uncovered new intracellular mechanisms promoting cell-cell adhesion, a process disrupted in a variety of skin and inflammatory diseases, according to a recent study published in the Journal of Cell Biology.",
+      "publishedAt": "Mon, 30 Mar 2026 15:30:02 EDT",
+      "matchedKeywords": [
+        "developmental biology"
+      ],
+      "sourceFeed": "https://phys.org/rss-feed/biology-news/",
+      "score": 6.964006168981482
+    },
+    {
+      "title": "Binding to RNA is not enough—changing its shape is what makes a drug work, study reveals",
+      "link": "https://phys.org/news/2026-03-rna-drug-reveals.html",
+      "description": "Ribonucleic acids (RNAs) serve as messengers between DNA and protein production, and perform a wide variety of regulatory functions across different cellular processes. This makes them an interesting target for drug designers. Molecular genetics researcher Danny Incarnato (University of Groningen) studies how small-molecule drugs could interfere with RNA structure and function. In a new paper published on March 23 in the journal Nature Communications, he shows that small molecules that bind to RNA only rarely affect its function, while molecules that change RNA structure have a bigger effect.",
+      "publishedAt": "Sun, 29 Mar 2026 17:00:01 EDT",
+      "matchedKeywords": [
+        "genetics"
+      ],
+      "sourceFeed": "https://phys.org/rss-feed/biology-news/",
+      "score": 6.026494594907407
+    },
+    {
+      "title": "3 Questions: Using computation to study the world’s best single-celled chemists",
+      "link": "https://news.mit.edu/2025/3-questions-yunha-hwang-using-computation-study-worlds-best-single-celled-chemists-1215",
+      "description": "Assistant Professor Yunha Hwang utilizes microbial genomes to examine the language of biology. Her appointment reflects MIT’s commitment to exploring the intersection of genetics research and AI.",
+      "publishedAt": "Mon, 15 Dec 2025 17:15:00 -0500",
+      "matchedKeywords": [
+        "genetics"
+      ],
+      "sourceFeed": "https://news.mit.edu/rss/topic/biology",
+      "score": 5
+    }
+  ]
+}

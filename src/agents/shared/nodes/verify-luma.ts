@@ -27,8 +27,6 @@ const VERIFY_LUMA_RELEVANT_CONTENT_PROMPT = `You are a highly regarded marketing
 You're provided with the contents of an event promotion page.
 Your task is to carefully read over the entire event details, and determine whether or not the event is actually relevant to your company.
 
-${getPrompts().businessContext}
-
 ${getPrompts().contentValidationPrompt}
 
 Given this context, examine the event details closely, and determine if the event is relevant to your company.
@@ -112,6 +110,7 @@ export async function verifyLumaEvent(
     await verifyContentIsRelevant(urlContents.content, {
       systemPrompt: VERIFY_LUMA_RELEVANT_CONTENT_PROMPT,
       schema: RELEVANCY_SCHEMA,
+      config,
     })
   ) {
     return returnValue;

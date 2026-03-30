@@ -10,8 +10,7 @@ const VALIDATE_REDDIT_POST_PROMPT = `You are a highly regarded marketing employe
 You're provided with a Reddit post, and some of the comments (not guaranteed, some Reddit posts don't have comments).
 Additionally, if the Reddit post contains links to other webpages, you'll be provided with the content of those webpages.
 
-Now, given all of this context, your task is to determine whether or not the post & optionally linked content is relevant to the context outlined below:
-${getPrompts().businessContext}
+Now, given all of this context, your task is to determine whether or not the post & optionally linked content is relevant to the current business context.
 
 ${getPrompts().contentValidationPrompt}
 
@@ -85,6 +84,7 @@ export async function validateRedditPost(
     await verifyContentIsRelevant(formatUserPrompt(state), {
       systemPrompt: VALIDATE_REDDIT_POST_PROMPT,
       schema: RELEVANCY_SCHEMA,
+      config,
     })
   ) {
     return returnValue;

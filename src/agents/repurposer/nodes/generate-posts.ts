@@ -1,8 +1,8 @@
-import { ChatAnthropic } from "@langchain/anthropic";
 import { getPrompts } from "../../generate-post/prompts/index.js";
 import { RepurposerState } from "../types.js";
 import { z } from "zod";
 import { formatReportForPrompt } from "../utils.js";
+import { createSocialTextModel } from "../../../plugins/model-factory.js";
 
 export const POST_STRUCTURE_INSTRUCTIONS = `The post should have three main sections, outlined below:
 <structure-instructions>
@@ -95,10 +95,10 @@ export async function generatePosts(
       ),
   });
 
-  const model = new ChatAnthropic({
-    model: "claude-sonnet-4-5",
+  const model = (createSocialTextModel({
+    purpose: "generate-post",
     temperature: 0.5,
-  }).bindTools([
+  }) as any).bindTools([
     {
       name: `write_${postOrPosts}`,
       description: `Write ${numPosts} LinkedIn/Twitter ${postOrPosts} based on the marketing report and post campaign plan provided.`,

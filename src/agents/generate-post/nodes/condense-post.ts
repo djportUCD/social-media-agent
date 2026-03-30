@@ -1,4 +1,3 @@
-import { ChatAnthropic } from "@langchain/anthropic";
 import { GeneratePostAnnotation } from "../generate-post-state.js";
 import { parseGeneration } from "./generate-post/utils.js";
 import { filterLinksForPostContent, removeUrls } from "../../utils.js";
@@ -8,9 +7,11 @@ import {
 } from "../../../utils/reflections.js";
 import { LangGraphRunnableConfig } from "@langchain/langgraph";
 import { getPrompts } from "../prompts/index.js";
+import { createSocialTextModel } from "../../../plugins/model-factory.js";
+import { buildPluginPromptContext } from "../../../plugins/runtime.js";
 
-const CONDENSE_POST_PROMPT = `You're a highly skilled marketer at LangChain, working on crafting thoughtful and engaging content for LangChain's LinkedIn and Twitter pages.
-You wrote a post for the LangChain LinkedIn and Twitter pages, however it's a bit too long for Twitter, and thus needs to be condensed.
+const CONDENSE_POST_PROMPT = `You're a highly skilled marketer, working on crafting thoughtful and engaging content for a business's social channels.
+You wrote a post, however it's too long for the active platform profile, and thus needs to be condensed.
 
 You wrote this marketing report on the content which you used to write the original post:
 <report>
@@ -86,17 +87,19 @@ export async function condensePost(
     .replace("{originalPostLength}", originalPostLength)
     .replace("{reflectionsPrompt}", reflectionsPrompt);
 
-  const condensePostModel = new ChatAnthropic({
-    model: "claude-sonnet-4-5",
+  const condensePostModel = createSocialTextModel({
+    config,
+    purpose: "condense-post",
     temperature: 0.5,
   });
+  const pluginPromptContext = await buildPluginPromptContext(config);
 
   const userMessageContent = `Here is the original post:\n\n${state.post}`;
 
   const condensePostResponse = await condensePostModel.invoke([
     {
       role: "system",
-      content: formattedSystemPrompt,
+      content: `${formattedSystemPrompt}\n\n${pluginPromptContext}`,
     },
     {
       role: "user",

@@ -1,8 +1,8 @@
-import { ChatOpenAI } from "@langchain/openai";
 import { GenerateReportState } from "../state.js";
 import { EXTRACT_KEY_DETAILS_PROMPT } from "../prompts.js";
 import { TweetsGroupedByContent } from "../../curate-data/types.js";
 import { formatImageMessages } from "../utils.js";
+import { createSocialTextModel } from "../../../plugins/model-factory.js";
 
 const formatKeyDetailsPrompt = (
   pageContents: string[],
@@ -57,9 +57,9 @@ export async function extractKeyDetails(
     state.tweetGroup,
   );
 
-  const model = new ChatOpenAI({
-    model: "o1",
-    streaming: false,
+  const model = createSocialTextModel({
+    purpose: "generate-report",
+    temperature: 0,
   });
 
   const imageMessage = state.imageOptions?.length

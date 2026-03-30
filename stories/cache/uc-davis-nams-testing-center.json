@@ -1,0 +1,105 @@
+{
+  "businessId": "uc-davis-nams-testing-center",
+  "generatedAt": "2026-03-30T20:21:52.286Z",
+  "links": [
+    "https://www.sciencedaily.com/releases/2026/01/260127010149.htm",
+    "https://www.genengnews.com/topics/omics/autism-risk-genes-largely-shared-across-global-populations/",
+    "https://www.genengnews.com/topics/translational-medicine/link-between-ceramide-transport-and-cell-senescence-could-inform-aging-biology-research/",
+    "https://www.genengnews.com/topics/artificial-intelligence/why-data-infrastructure-determines-ai-success-in-drug-discovery/",
+    "https://www.genengnews.com/topics/artificial-intelligence/lilly-grows-ai-footprint-with-up-to-2-75b-insilico-collaboration/",
+    "https://www.genengnews.com/topics/infectious-diseases/african-trypanosomes-use-a-molecular-shredder-to-avoid-detection-in-the-bloodstream/",
+    "https://www.genengnews.com/topics/translational-medicine/stockwatch-wave-plummets-50-on-obesity-data/",
+    "https://www.genengnews.com/topics/translational-medicine/bioengineered-implants-deliver-multi-drug-therapy-in-animal-models/"
+  ],
+  "stories": [
+    {
+      "title": "This discovery could let bones benefit from exercise without moving",
+      "link": "https://www.sciencedaily.com/releases/2026/01/260127010149.htm",
+      "description": "Researchers have discovered a biological switch that explains why movement keeps bones strong. The protein senses physical activity and pushes bone marrow stem cells to build bone instead of storing fat, slowing age-related bone loss. By targeting this “exercise sensor,” scientists believe they could create drugs that mimic exercise at the molecular level. The approach could protect fragile bones in people who are unable to stay active.",
+      "publishedAt": "Tue, 27 Jan 2026 09:48:33 EST",
+      "matchedKeywords": [
+        "stem cell",
+        "stem cells"
+      ],
+      "sourceFeed": "https://www.sciencedaily.com/rss/health_medicine/stem_cells.xml",
+      "score": 8
+    },
+    {
+      "title": "Autism Risk Genes Largely Shared Across Global Populations",
+      "link": "https://www.genengnews.com/topics/omics/autism-risk-genes-largely-shared-across-global-populations/",
+      "description": "<p>A large autism genomics study in Latin American populations identifies shared risk genes across ancestries, supporting universal genetic architecture, improving diagnostic equity, and highlighting the importance of diverse representation in genetic research.</p>\n<p>The post <a href=\"https://www.genengnews.com/topics/omics/autism-risk-genes-largely-shared-across-global-populations/\">Autism Risk Genes Largely Shared Across Global Populations</a> appeared first on <a href=\"https://www.genengnews.com\">GEN - Genetic Engineering and Biotechnology News</a>.</p>",
+      "publishedAt": "Mon, 30 Mar 2026 19:06:51 +0000",
+      "matchedKeywords": [
+        "biotechnology"
+      ],
+      "sourceFeed": "https://www.genengnews.com/feed/",
+      "score": 6.947901840277778
+    },
+    {
+      "title": "Link Between Ceramide Transport and Cell Senescence Could Inform Aging Biology Research",
+      "link": "https://www.genengnews.com/topics/translational-medicine/link-between-ceramide-transport-and-cell-senescence-could-inform-aging-biology-research/",
+      "description": "<p>An <i>in vitro</i> study showed how impaired transport protein and buildup of ceramides at the endoplasmic reticulum can help lock cells into replicative senescence, potentially pointing to avenues for research on cell aging. </p>\n<p>The post <a href=\"https://www.genengnews.com/topics/translational-medicine/link-between-ceramide-transport-and-cell-senescence-could-inform-aging-biology-research/\">Link Between Ceramide Transport and Cell Senescence Could Inform Aging Biology Research</a> appeared first on <a href=\"https://www.genengnews.com\">GEN - Genetic Engineering and Biotechnology News</a>.</p>",
+      "publishedAt": "Mon, 30 Mar 2026 18:59:55 +0000",
+      "matchedKeywords": [
+        "biotechnology"
+      ],
+      "sourceFeed": "https://www.genengnews.com/feed/",
+      "score": 6.943087025462963
+    },
+    {
+      "title": "Why Data Infrastructure Determines AI Success in Drug Discovery",
+      "link": "https://www.genengnews.com/topics/artificial-intelligence/why-data-infrastructure-determines-ai-success-in-drug-discovery/",
+      "description": "<p>The goal is to make good data practices the path of least resistance. Perhaps the most important requirement is software that experimental scientists can use naturally within their existing workflows.</p>\n<p>The post <a href=\"https://www.genengnews.com/topics/artificial-intelligence/why-data-infrastructure-determines-ai-success-in-drug-discovery/\">Why Data Infrastructure Determines AI Success in Drug Discovery</a> appeared first on <a href=\"https://www.genengnews.com\">GEN - Genetic Engineering and Biotechnology News</a>.</p>",
+      "publishedAt": "Mon, 30 Mar 2026 18:49:32 +0000",
+      "matchedKeywords": [
+        "biotechnology"
+      ],
+      "sourceFeed": "https://www.genengnews.com/feed/",
+      "score": 6.935876377314814
+    },
+    {
+      "title": "Lilly Grows AI Footprint with Up-to-$2.75B Insilico Collaboration",
+      "link": "https://www.genengnews.com/topics/artificial-intelligence/lilly-grows-ai-footprint-with-up-to-2-75b-insilico-collaboration/",
+      "description": "<p>Lilly has agreed to pay Insilico $115 million upfront, as well as development, regulatory, and commercial milestones. Insilico will grant the pharma giant an exclusive global license to develop, manufacture, and commercialize “potentially best-in-class, novel oral therapeutics.\"</p>\n<p>The post <a href=\"https://www.genengnews.com/topics/artificial-intelligence/lilly-grows-ai-footprint-with-up-to-2-75b-insilico-collaboration/\">Lilly Grows AI Footprint with Up-to-$2.75B Insilico Collaboration</a> appeared first on <a href=\"https://www.genengnews.com\">GEN - Genetic Engineering and Biotechnology News</a>.</p>",
+      "publishedAt": "Mon, 30 Mar 2026 11:53:08 +0000",
+      "matchedKeywords": [
+        "biotechnology"
+      ],
+      "sourceFeed": "https://www.genengnews.com/feed/",
+      "score": 6.646709710648148
+    },
+    {
+      "title": "African Trypanosomes Use a Molecular Shredder to Avoid Detection in the Bloodstream",
+      "link": "https://www.genengnews.com/topics/infectious-diseases/african-trypanosomes-use-a-molecular-shredder-to-avoid-detection-in-the-bloodstream/",
+      "description": "<p>African trypanosomes evade immunity by switching surface proteins and using ESB2, an RNA “shredder,” to control gene expression via RNA decay, revealing new vulnerabilities and potential treatments for sleeping sickness.</p>\n<p>The post <a href=\"https://www.genengnews.com/topics/infectious-diseases/african-trypanosomes-use-a-molecular-shredder-to-avoid-detection-in-the-bloodstream/\">African Trypanosomes Use a Molecular Shredder to Avoid Detection in the Bloodstream</a> appeared first on <a href=\"https://www.genengnews.com\">GEN - Genetic Engineering and Biotechnology News</a>.</p>",
+      "publishedAt": "Mon, 30 Mar 2026 09:00:02 +0000",
+      "matchedKeywords": [
+        "biotechnology"
+      ],
+      "sourceFeed": "https://www.genengnews.com/feed/",
+      "score": 6.526501377314815
+    },
+    {
+      "title": "Wave Plummets 50% on Obesity Data",
+      "link": "https://www.genengnews.com/topics/translational-medicine/stockwatch-wave-plummets-50-on-obesity-data/",
+      "description": "<p>Investors zeroed in on the mere 0.9% dip in body weight and 3.3% decline in waist circumference (both placebo-adjusted) reported in the 32-participant 240 mg dose cohort following a six-month follow-up review during the Phase I INLIGHT trial (NCT06842186), designed to assess WVE-007 in healthy individuals living with overweight or obesity conditions. </p>\n<p>The post <a href=\"https://www.genengnews.com/topics/translational-medicine/stockwatch-wave-plummets-50-on-obesity-data/\">Wave Plummets 50% on Obesity Data</a> appeared first on <a href=\"https://www.genengnews.com\">GEN - Genetic Engineering and Biotechnology News</a>.</p>",
+      "publishedAt": "Mon, 30 Mar 2026 01:11:57 +0000",
+      "matchedKeywords": [
+        "biotechnology"
+      ],
+      "sourceFeed": "https://www.genengnews.com/feed/",
+      "score": 6.201443506944445
+    },
+    {
+      "title": "Bioengineered Implants Deliver Multi-Drug Therapy in Animal Models",
+      "link": "https://www.genengnews.com/topics/translational-medicine/bioengineered-implants-deliver-multi-drug-therapy-in-animal-models/",
+      "description": "<p>By generating its own oxygen supply, a new implantable device keeps drug-producing cells alive and functional for weeks, supporting sustained therapeutic delivery for treating chronic conditions.</p>\n<p>The post <a href=\"https://www.genengnews.com/topics/translational-medicine/bioengineered-implants-deliver-multi-drug-therapy-in-animal-models/\">Bioengineered Implants Deliver Multi-Drug Therapy in Animal Models</a> appeared first on <a href=\"https://www.genengnews.com\">GEN - Genetic Engineering and Biotechnology News</a>.</p>",
+      "publishedAt": "Fri, 27 Mar 2026 20:27:18 +0000",
+      "matchedKeywords": [
+        "biotechnology"
+      ],
+      "sourceFeed": "https://www.genengnews.com/feed/",
+      "score": 5
+    }
+  ]
+}

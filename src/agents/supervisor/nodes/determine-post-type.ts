@@ -1,6 +1,6 @@
-import { ChatAnthropic } from "@langchain/anthropic";
 import { SupervisorState } from "../supervisor-state.js";
 import { z } from "zod";
+import { createSocialStructuredOutputModel } from "../../../plugins/model-factory.js";
 
 const DETERMINE_POST_TYPE_PROMPT = `You're a highly skilled marketer, working to craft new social media content for your Twitter & LinkedIn pages.
 You're given a report (or reports) on a technical AI topic. Based on the report(s), you should determine if this report should be used to generate a long form 'thread' like post, or a shorter, more concise and straightforward post.
@@ -28,12 +28,19 @@ const postTypeSchema = z
 function formatReportUserPrompt(report: {
   reports: string[];
   keyDetails: string[];
+  sourceContext: Array<string | undefined>;
 }) {
   if (report.reports.length === 1) {
+    const sourceContextText = report.sourceContext[0]
+      ? `\n\nHere is the source context for the report:\n<source-context>\n${report.sourceContext[0]}\n</source-context>`
+      : "";
+
     return `Here are the key details for the report:
 <key-details>
 ${report.keyDetails[0] || "no key details"}
 </key-details>
+
+${sourceContextText}
 
 And here is the full report:
 <report>
@@ -55,6 +62,10 @@ Please take your time, and identify the best type of post to generate for this r
   <key-details index="${index}">
     ${report.keyDetails[index] || "no key details"}
   </key-details>
+
+  <source-context index="${index}">
+    ${report.sourceContext[index] || "none"}
+  </source-context>
   `,
     )
     .join("\n")}
@@ -66,16 +77,17 @@ Please take your time, and identify the best type of post to generate for these 
 export async function determinePostType(
   state: SupervisorState,
 ): Promise<Partial<SupervisorState>> {
-  const model = new ChatAnthropic({
-    model: "claude-sonnet-4-5",
+  const model = createSocialStructuredOutputModel({
+    purpose: "verify-content",
     temperature: 0,
-  }).withStructuredOutput(postTypeSchema, {
+    schema: postTypeSchema,
     name: "postType",
   });
 
   const reportAndPostType: {
     reports: string[];
     keyDetails: string[];
+    sourceContext: Array<string | undefined>;
     reason: string;
     type: "thread" | "post";
   }[] = [];

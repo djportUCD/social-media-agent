@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ChatAnthropic } from "@langchain/anthropic";
+import { createSocialTextModel } from "../../../../plugins/model-factory.js";
 
 const ROUTE_POST_PROMPT = `You're an advanced AI assistant, tasked with routing a user's response.
 The only route which can be taken is 'rewrite_post'. If the user is not asking to rewrite a post, then choose the 'unknown_response' route.
@@ -25,10 +25,10 @@ export async function routeResponse(
   post: string,
   userResponse: string,
 ): Promise<z.infer<typeof routeResponseSchema>> {
-  const model = new ChatAnthropic({
-    model: "claude-sonnet-4-5",
+  const model = (createSocialTextModel({
+    purpose: "route-response",
     temperature: 0,
-  }).bindTools(
+  }) as any).bindTools(
     [
       {
         name: "route_response",

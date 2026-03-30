@@ -4,6 +4,8 @@ import {
   SupervisorConfigurableAnnotation,
   SupervisorState,
 } from "./supervisor-state.js";
+import { loadBusinessPlugin } from "../../plugins/runtime.js";
+import { getAcceptedStorySourceContext } from "../curate-data/loaders/story-feedback.js";
 import { curateDataGraph } from "../curate-data/index.js";
 import { convertPostToString } from "../verify-reddit-post/utils.js";
 import { generateReportGraph } from "../generate-report/index.js";
@@ -12,6 +14,7 @@ import { determinePostType } from "./nodes/determine-post-type.js";
 import { generatePosts } from "./nodes/generate-posts.js";
 
 function startGenerateReportRuns(state: SupervisorState): Send[] {
+  const activeBusiness = loadBusinessPlugin();
   const {
     tweetsGroupedByContent,
     githubTrendingData,
@@ -33,9 +36,18 @@ function startGenerateReportRuns(state: SupervisorState): Send[] {
     }) || [];
   const generalSends =
     generalContents?.map((gc) => {
+      const sourceContext = gc.relevantLinks
+        .map((link) =>
+          getAcceptedStorySourceContext(activeBusiness.id, link, {
+            businessDisplayName: activeBusiness.displayName,
+          }),
+        )
+        .find((value) => !!value);
+
       return new Send("generateReport", {
         pageContent: [gc.pageContent],
         relevantLinks: gc.relevantLinks,
+        sourceContext,
       });
     }) || [];
   const redditSends =
@@ -56,7 +68,7 @@ const supervisorWorkflow = new StateGraph(
   // Calls the curate-data agent to fetch data from different sources.
   // This also means grouping the data into related groups, and expanding
   // the external URLs found in the tweets.
-  .addNode("ingestData", curateDataGraph)
+  .addNode("ingestData", curateDataGraph as any)
   .addNode("generateReport", generateReportGraph)
   .addNode("groupReports", groupReports)
   .addNode("determinePostType", determinePostType)

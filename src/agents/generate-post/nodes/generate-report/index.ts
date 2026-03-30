@@ -1,7 +1,8 @@
 import { LangGraphRunnableConfig } from "@langchain/langgraph";
 import { GeneratePostAnnotation } from "../../generate-post-state.js";
-import { ChatAnthropic } from "@langchain/anthropic";
 import { GENERATE_REPORT_PROMPT } from "./prompts.js";
+import { createSocialTextModel } from "../../../../plugins/model-factory.js";
+import { buildPluginPromptContext } from "../../../../plugins/runtime.js";
 
 /**
  * Parse the LLM generation to extract the report from inside the <report> tag.
@@ -28,7 +29,7 @@ ${pageContents.map((content, index) => `<Content index={${index + 1}}>\n${conten
 
 export async function generateContentReport(
   state: typeof GeneratePostAnnotation.State,
-  _config: LangGraphRunnableConfig,
+  config: LangGraphRunnableConfig,
 ): Promise<Partial<typeof GeneratePostAnnotation.State>> {
   if (!state.pageContents?.length) {
     throw new Error(
@@ -36,15 +37,17 @@ export async function generateContentReport(
     );
   }
 
-  const reportModel = new ChatAnthropic({
-    model: "claude-sonnet-4-5",
+  const reportModel = createSocialTextModel({
+    config,
+    purpose: "generate-report",
     temperature: 0,
   });
+  const pluginPromptContext = await buildPluginPromptContext(config);
 
   const result = await reportModel.invoke([
     {
       role: "system",
-      content: GENERATE_REPORT_PROMPT,
+      content: `${GENERATE_REPORT_PROMPT}\n\n${pluginPromptContext}`,
     },
     {
       role: "user",

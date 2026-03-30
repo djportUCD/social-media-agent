@@ -11,7 +11,12 @@ import { RedditPostsWithExternalData } from "../verify-reddit-post/types.js";
 import { NUM_POSTS_PER_SUBREDDIT } from "./constants.js";
 import { Source } from "../supervisor/types.js";
 import { VerifyLinksResultAnnotation } from "../verify-links/verify-links-state.js";
-import { SKIP_CONTENT_RELEVANCY_CHECK } from "../generate-post/constants.js";
+import {
+  BUSINESS_STORY_CACHE_ONLY,
+  BUSINESS_STORY_LIMIT,
+  BUSINESS_STORY_LOOKBACK_HOURS,
+  SKIP_CONTENT_RELEVANCY_CHECK,
+} from "../generate-post/constants.js";
 
 export const CurateDataAnnotation = Annotation.Root({
   ...VerifyLinksResultAnnotation.spec,
@@ -75,12 +80,18 @@ export const CurateDataConfigurableAnnotation = Annotation.Root({
   /**
    * The sources to ingest from.
    */
-  sources: Annotation<Source[]>,
+  sources: Annotation<Source[]>({
+    reducer: (_state, update) => update,
+    default: () => ["business_stories"],
+  }),
   /**
    * The number of posts to fetch per subreddit when ingesting Reddit posts.
    */
   [NUM_POSTS_PER_SUBREDDIT]: Annotation<number | undefined>(),
   [SKIP_CONTENT_RELEVANCY_CHECK]: Annotation<boolean | undefined>(),
+  [BUSINESS_STORY_LIMIT]: Annotation<number | undefined>(),
+  [BUSINESS_STORY_LOOKBACK_HOURS]: Annotation<number | undefined>(),
+  [BUSINESS_STORY_CACHE_ONLY]: Annotation<boolean | undefined>(),
 });
 
 export type CurateDataState = typeof CurateDataAnnotation.State;

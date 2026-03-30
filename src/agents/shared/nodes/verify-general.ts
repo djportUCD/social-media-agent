@@ -29,8 +29,6 @@ const VERIFY_COMPANY_RELEVANT_CONTENT_PROMPT = `You are a highly regarded market
 You're provided with a webpage containing content a third party submitted to you claiming it's relevant to your business context.
 Your task is to carefully read over the entire page, and determine whether or not the content is actually relevant to your context.
 
-${getPrompts().businessContext}
-
 ${getPrompts().contentValidationPrompt}
 
 Given this context, examine the webpage content closely, and determine if the content is relevant to your context.
@@ -109,6 +107,7 @@ export async function verifyGeneralContent(
     await verifyContentIsRelevant(urlContents.content, {
       systemPrompt: VERIFY_COMPANY_RELEVANT_CONTENT_PROMPT,
       schema: RELEVANCY_SCHEMA,
+      config,
     })
   ) {
     return returnValue;

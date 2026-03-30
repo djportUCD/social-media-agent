@@ -1,9 +1,14 @@
 import { Annotation, END } from "@langchain/langgraph";
 import { IngestDataAnnotation } from "../ingest-data/ingest-data-state.js";
 import {
+  BUSINESS_PLUGIN_ID,
+  PLATFORM_PLUGIN_ID,
   POST_TO_LINKEDIN_ORGANIZATION,
   SKIP_CONTENT_RELEVANCY_CHECK,
   SKIP_USED_URLS_CHECK,
+  SOCIAL_MODEL_NAME,
+  SOCIAL_MODEL_PROVIDER,
+  SOCIAL_OLLAMA_BASE_URL,
   TEXT_ONLY_MODE,
 } from "./constants.js";
 import { DateType } from "../types.js";
@@ -127,6 +132,26 @@ export const GeneratePostConfigurableAnnotation = Annotation.Root({
     default: () => false,
   }),
   /**
+   * Business plugin profile to use for prompts and analytics guidance.
+   */
+  [BUSINESS_PLUGIN_ID]: Annotation<string | undefined>(),
+  /**
+   * Platform strategy plugin to use for prompts and analytics guidance.
+   */
+  [PLATFORM_PLUGIN_ID]: Annotation<string | undefined>(),
+  /**
+   * Text model provider used by the main post generation path.
+   */
+  [SOCIAL_MODEL_PROVIDER]: Annotation<string | undefined>(),
+  /**
+   * Override model name for the selected provider.
+   */
+  [SOCIAL_MODEL_NAME]: Annotation<string | undefined>(),
+  /**
+   * Override base URL for local Ollama usage.
+   */
+  [SOCIAL_OLLAMA_BASE_URL]: Annotation<string | undefined>(),
+  /**
    * The original graph that started the "generate-post" graph
    * run. Undefined if the graph was started directly.
    */
@@ -146,6 +171,11 @@ export const BASE_GENERATE_POST_CONFIG: typeof GeneratePostConfigurableAnnotatio
   {
     [POST_TO_LINKEDIN_ORGANIZATION]: undefined,
     [TEXT_ONLY_MODE]: false,
+    [BUSINESS_PLUGIN_ID]: undefined,
+    [PLATFORM_PLUGIN_ID]: undefined,
+    [SOCIAL_MODEL_PROVIDER]: undefined,
+    [SOCIAL_MODEL_NAME]: undefined,
+    [SOCIAL_OLLAMA_BASE_URL]: undefined,
     origin: undefined,
     [SKIP_CONTENT_RELEVANCY_CHECK]: undefined,
     [SKIP_USED_URLS_CHECK]: undefined,

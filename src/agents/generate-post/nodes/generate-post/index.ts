@@ -1,6 +1,5 @@
 import { LangGraphRunnableConfig } from "@langchain/langgraph";
 import { GeneratePostAnnotation } from "../../generate-post-state.js";
-import { ChatAnthropic } from "@langchain/anthropic";
 import { GENERATE_POST_PROMPT } from "./prompts.js";
 import { formatPrompt, parseGeneration } from "./utils.js";
 import { ALLOWED_TIMES } from "../../constants.js";
@@ -9,6 +8,11 @@ import {
   REFLECTIONS_PROMPT,
 } from "../../../../utils/reflections.js";
 import { getNextSaturdayDate } from "../../../../utils/date.js";
+import { createSocialTextModel } from "../../../../plugins/model-factory.js";
+import {
+  buildPluginPromptContext,
+  getBusinessDisplayName,
+} from "../../../../plugins/runtime.js";
 
 export async function generatePost(
   state: typeof GeneratePostAnnotation.State,
@@ -20,12 +24,17 @@ export async function generatePost(
   if (!state.relevantLinks?.length) {
     throw new Error("No relevant links found");
   }
-  const postModel = new ChatAnthropic({
-    model: "claude-sonnet-4-5",
+  const postModel = createSocialTextModel({
+    config,
+    purpose: "generate-post",
     temperature: 0.5,
   });
 
-  const prompt = formatPrompt(state.report, state.relevantLinks);
+  const prompt = formatPrompt(
+    state.report,
+    state.relevantLinks,
+    getBusinessDisplayName(config),
+  );
 
   const reflections = await getReflectionsPrompt(config);
   const reflectionsPrompt = REFLECTIONS_PROMPT.replace(
@@ -37,11 +46,12 @@ export async function generatePost(
     "{reflectionsPrompt}",
     reflectionsPrompt,
   );
+  const pluginPromptContext = await buildPluginPromptContext(config);
 
   const postResponse = await postModel.invoke([
     {
       role: "system",
-      content: generatePostPrompt,
+      content: `${generatePostPrompt}\n\n${pluginPromptContext}`,
     },
     {
       role: "user",

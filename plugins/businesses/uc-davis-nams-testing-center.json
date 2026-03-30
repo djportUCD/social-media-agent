@@ -1,0 +1,105 @@
+{
+  "id": "uc-davis-nams-testing-center",
+  "displayName": "UC Davis NAMs Testing Center",
+  "summary": "The UC Davis NAMs Testing Center helps validate, verify, repurpose, and co-develop new approach methodologies for translational research, safety evaluation, and regulatory relevance.",
+  "audience": [
+    "NAM developers",
+    "translational researchers",
+    "industry partners",
+    "regulatory science collaborators"
+  ],
+  "voice": [
+    "scientific",
+    "future-facing",
+    "evidence-driven",
+    "collaborative"
+  ],
+  "goals": [
+    "position the center as a practical validation partner",
+    "connect NAM advances to real translational and regulatory use cases",
+    "attract collaboration inquiries"
+  ],
+  "keyThemes": [
+    "new approach methodologies",
+    "validation",
+    "alternative models",
+    "regulatory science",
+    "translational relevance"
+  ],
+  "ctaStyle": "Use collaboration-oriented calls to action that point to validation services, co-development, or defined context-of-use discussions.",
+  "analyticsByPlatform": {
+    "linkedin": {
+      "topPerformingPatterns": [
+        "Posts that connect NAM science to validation or regulatory decision-making perform best",
+        "Explaining why a methodology is more predictive or reproducible helps non-specialist readers stay engaged"
+      ],
+      "weakSignals": [
+        "Dense acronym-heavy openings",
+        "Abstract NAM advocacy without a concrete use case"
+      ],
+      "correlations": [
+        "Validation-focused posts correlate with stronger saves and collaboration-oriented engagement than broad thought leadership"
+      ]
+    },
+    "x": {
+      "topPerformingPatterns": [
+        "Short hooks about replacing or improving legacy testing approaches perform well",
+        "Specific references to organoids, microphysiological systems, or predictive methods help"
+      ],
+      "weakSignals": [
+        "Long explanatory setup",
+        "Vague references to innovation without naming the methodology"
+      ],
+      "correlations": [
+        "Posts naming a concrete NAM and its translational value correlate with better click-through"
+      ]
+    }
+  },
+  "storyDiscovery": {
+    "keywords": [
+      "new approach methodologies",
+      "NAMs",
+      "alternative methods",
+      "stem cell",
+      "stem cells",
+      "organoids",
+      "tissue chip",
+      "tissue chips",
+      "microphysiological systems",
+      "translational science",
+      "regenerative medicine",
+      "human-based research",
+      "biotechnology",
+      "medical device",
+      "medical devices",
+      "predictive toxicology",
+      "animal alternatives",
+      "regulatory science"
+    ],
+    "excludedKeywords": [
+      "North American Monsoon",
+      "nams weather"
+    ],
+    "excludedDomains": [
+      "namtesting.org",
+      "ucdavis.edu",
+      "cnprc.ucdavis.edu"
+    ],
+    "rssFeeds": [
+      "https://www.sciencedaily.com/rss/health_medicine/stem_cells.xml",
+      "https://www.nature.com/nbt.rss",
+      "https://www.genengnews.com/feed/",
+      "https://www.sciencedaily.com/rss/health_medicine/medical_devices.xml"
+    ],
+    "preferredDomains": [
+      "sciencedaily.com",
+      "nature.com",
+      "genengnews.com",
+      "fda.gov",
+      "epa.gov",
+      "nih.gov"
+    ],
+    "maxStories": 8,
+    "lookbackHours": 8760
+  }
+}
